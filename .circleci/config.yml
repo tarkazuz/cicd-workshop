@@ -37,6 +37,7 @@ jobs:
     steps:
      - run:
           name: sending a message
+          command:  echo $(A $CIRCLE_JOB job has succeeded)
           success_message: 	':tada: A $CIRCLE_JOB job has succeeded!'
       
 workflows:
