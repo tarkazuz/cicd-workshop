@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs: 
+  discord: antonioned/discord@0.1.0
+
 jobs:
   build-and-test:
     docker:
@@ -28,8 +31,16 @@ jobs:
           path: test-results
       - store_artifacts:
           path: test-results
+  send-message:
+    docker:
+      - image: cimg/node:16.14.0
+    steps:
+    - run:
+          name: sending a message
+          success_message: 	':tada: A $CIRCLE_JOB job has succeeded!'
       
 workflows:
   run-tests:
     jobs:
       - build-and-test
+      - send-message
